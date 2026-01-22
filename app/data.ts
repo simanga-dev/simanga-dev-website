@@ -2,7 +2,7 @@ type Project = {
   name: string
   description: string
   link: string
-  video: string
+  video?: string
   id: string
 }
 
@@ -29,46 +29,44 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Motion Primitives Pro',
+    name: 'Matric Dashboard',
     description:
-      'Advanced components and templates to craft beautiful websites.',
-    link: 'https://pro.motion-primitives.com/',
-    video:
-      'https://www.youtube.com/watch?v=OBX1YmJL0dw&pp=ugUHEgVlbi1VUw%3D%3D',
-    id: 'project1',
+      'Data dashboard to visualize South African education metrics using Python and PostgreSQL.',
+    link: 'https://matric.simanga.dev',
+    id: 'project3',
   },
   {
-    name: 'Motion Primitives',
-    description: 'UI kit to make beautiful, animated interfaces.',
-    link: 'https://motion-primitives.com/',
-    video: 'https://www.youtube.com/watch?v=hBI_FLYfwmM',
-    id: 'project2',
+    name: 'Carpentry Shop',
+    description:
+      'Cross-platform user management system using ASP.NET Core and PostgreSQL.',
+    link: 'https://carpentry.simanga.dev',
+    id: 'project4',
   },
 ]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: 'Reglazed Studio',
-    title: 'CEO',
-    start: '2024',
+    company: 'Express Employment Professionals',
+    title: 'Software Engineer',
+    start: '2023',
     end: 'Present',
-    link: 'https://ibelick.com',
+    link: 'https://simanga.dev',
     id: 'work1',
   },
   {
-    company: 'Freelance',
-    title: 'Design Engineer',
+    company: 'Kriterion AI',
+    title: 'Junior Software Engineer',
     start: '2022',
-    end: '2024',
-    link: 'https://ibelick.com',
+    end: '2023',
+    link: 'https://simanga.dev',
     id: 'work2',
   },
   {
-    company: 'Freelance',
-    title: 'Front-end Developer',
-    start: '2017',
-    end: 'Present',
-    link: 'https://ibelick.com',
+    company: 'Copalcor (PTY)',
+    title: 'Software Developer Intern',
+    start: '2020',
+    end: '2021',
+    link: 'https://simanga.dev',
     id: 'work3',
   },
 ]
@@ -106,19 +104,15 @@ export const BLOG_POSTS: BlogPost[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Github',
-    link: 'https://github.com/ibelick',
-  },
-  {
-    label: 'Twitter',
-    link: 'https://twitter.com/ibelick',
+    link: 'https://github.com/simanga-dev',
   },
   {
     label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/ibelick',
+    link: 'https://www.linkedin.com/in/simanga/',
   },
   {
-    label: 'Instagram',
-    link: 'https://www.instagram.com/ibelick',
+    label: 'Website',
+    link: 'https://simanga.dev/',
   },
 ]
 
