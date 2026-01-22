@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} dark tracking-tight antialiased`}
+        className={`${geist.variable} ${geistMono.variable} tracking-tight antialiased`}
       >
         <ThemeProvider
           enableSystem={true}
