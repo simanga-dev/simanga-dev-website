@@ -72,7 +72,7 @@ export function Footer() {
       <div className="flex items-center justify-between">
         <a href="https://github.com/ibelick/nim" target="_blank" rel="noopener noreferrer">
           <TextLoop className="text-xs ">
-            <span>© 2024 Nim.</span>
+            <span>© {new Date().getFullYear()} Nim.</span>
             <span>Built with Motion-Primitives.</span>
           </TextLoop>
         </a>
