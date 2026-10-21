@@ -100,7 +100,7 @@ function MagneticSocialLink({
     <Magnetic springOptions={{ bounce: 0 }} intensity={0.3}>
       <a
         href={link}
-        className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-zinc-100 px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:bg-zinc-950 hover:text-zinc-50 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
+        className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-teal-50 px-2.5 py-1 text-sm text-teal-800 ring-1 ring-inset ring-teal-200 transition-colors duration-200 hover:bg-teal-100 hover:text-teal-950 dark:bg-teal-400/10 dark:text-teal-200 dark:ring-teal-400/25 dark:hover:bg-teal-400/20 dark:hover:text-teal-100"
       >
         {children}
         <svg
@@ -216,7 +216,7 @@ export default function Personal() {
                   {project.technologies.map((technology) => (
                     <li
                       key={technology}
-                      className="rounded-md bg-zinc-100 px-2 py-1 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
+                      className="rounded-md bg-teal-50 px-2 py-1 text-xs text-teal-800 ring-1 ring-inset ring-teal-200 dark:bg-teal-400/10 dark:text-teal-200 dark:ring-teal-400/25"
                     >
                       {technology}
                     </li>
