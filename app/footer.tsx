@@ -1,6 +1,5 @@
 'use client'
 import { AnimatedBackground } from '@/components/ui/animated-background'
-import { TextLoop } from '@/components/ui/text-loop'
 import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
@@ -68,14 +67,11 @@ function ThemeSwitch() {
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t px-0 py-4 ">
+    <footer className="mt-24 border-t px-0 py-4">
       <div className="flex items-center justify-between">
-        <a href="https://github.com/ibelick/nim" target="_blank" rel="noopener noreferrer">
-          <TextLoop className="text-xs ">
-            <span>© {new Date().getFullYear()} Nim.</span>
-            <span>Built with Motion-Primitives.</span>
-          </TextLoop>
-        </a>
+        <p className="text-xs text-zinc-500 dark:text-zinc-400">
+          © {new Date().getFullYear()} Simanga Khoza
+        </p>
         <div className="text-xs">
           <ThemeSwitch />
         </div>
