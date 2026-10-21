@@ -1,6 +1,7 @@
 'use client'
 import { motion } from 'motion/react'
 import { XIcon } from 'lucide-react'
+import Image from 'next/image'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
 import {
@@ -10,12 +11,11 @@ import {
   MorphingDialogClose,
   MorphingDialogContainer,
 } from '@/components/ui/morphing-dialog'
-import Link from 'next/link'
-import { AnimatedBackground } from '@/components/ui/animated-background'
 import {
   PROJECTS,
   WORK_EXPERIENCE,
-  BLOG_POSTS,
+  SKILLS,
+  CERTIFICATIONS,
   EMAIL,
   SOCIAL_LINKS,
 } from './data'
@@ -137,9 +137,16 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Specializing in the development of intuitive and performant
-            fullstack web applications, bridging the gap between design and
-            development.
+            I am a full-stack software developer based in Pretoria, South
+            Africa, with six years of experience building and supporting C# and
+            .NET business systems, including SaaS and financial applications. I
+            work across requirements, REST APIs, SQL Server, React interfaces,
+            testing, and production support.
+          </p>
+          <p className="mt-4 text-zinc-600 dark:text-zinc-400">
+            I use AI-assisted coding tools alongside code review and automated
+            testing. Outside work, I am building Matric Dashboard to make South
+            African school results easier to explore.
           </p>
         </div>
       </motion.section>
@@ -148,22 +155,52 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <h2 className="mb-5 text-lg font-medium">Selected projects</h2>
+        <div
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain p-1 pb-5"
+          role="region"
+          aria-label="Selected projects, scroll horizontally for more"
+          tabIndex={0}
+        >
           {PROJECTS.map((project) => (
-            <div key={project.name} className="space-y-2">
-              <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                {project.video ? (
+            <div
+              key={project.name}
+              className="w-[85%] shrink-0 snap-start space-y-3 sm:w-[calc(50%_-_0.75rem)]"
+            >
+              {project.image && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${project.name}`}
+                  className="group block overflow-hidden rounded-2xl bg-zinc-100 p-1 ring-1 ring-zinc-200 transition-shadow hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 dark:bg-zinc-900 dark:ring-zinc-800"
+                >
+                  <Image
+                    src={project.image.src}
+                    alt={project.image.alt}
+                    width={project.image.width}
+                    height={project.image.height}
+                    sizes="(max-width: 640px) 85vw, 288px"
+                    className="h-auto w-full rounded-xl"
+                  />
+                </a>
+              )}
+              {project.video && (
+                <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
                   <ProjectVideo src={project.video} />
-                ) : (
-                  <div className="aspect-video w-full rounded-xl bg-zinc-100 dark:bg-zinc-800" />
-                )}
-              </div>
+                </div>
+              )}
               <div className="px-1">
+                {project.status && (
+                  <p className="mb-2 w-fit rounded-full bg-zinc-100 px-2 py-1 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+                    {project.status}
+                  </p>
+                )}
                 <a
                   className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
                   href={project.link}
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {project.name}
                   <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
@@ -171,6 +208,30 @@ export default function Personal() {
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
                   {project.description}
                 </p>
+                <ul
+                  className="mt-3 flex flex-wrap gap-2"
+                  aria-label={`${project.name} technologies`}
+                >
+                  {project.technologies.map((technology) => (
+                    <li
+                      key={technology}
+                      className="rounded-md bg-zinc-100 px-2 py-1 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
+                    >
+                      {technology}
+                    </li>
+                  ))}
+                </ul>
+                {project.repository !== project.link && (
+                  <a
+                    className="mt-3 inline-block text-sm text-zinc-600 underline dark:text-zinc-400"
+                    href={project.repository}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View ${project.name} source on GitHub`}
+                  >
+                    Source on GitHub
+                  </a>
+                )}
               </div>
             </div>
           ))}
@@ -181,14 +242,11 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
+        <h2 className="mb-5 text-lg font-medium">Work experience</h2>
         <div className="flex flex-col space-y-2">
           {WORK_EXPERIENCE.map((job) => (
-            <a
+            <article
               className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-              href={job.link}
-              target="_blank"
-              rel="noopener noreferrer"
               key={job.id}
             >
               <Spotlight
@@ -196,21 +254,24 @@ export default function Personal() {
                 size={64}
               />
               <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
-                <div className="relative flex w-full flex-row justify-between">
+                <div className="relative flex w-full flex-col justify-between gap-2 sm:flex-row">
                   <div>
-                    <h4 className="font-normal dark:text-zinc-100">
+                    <h3 className="font-normal dark:text-zinc-100">
                       {job.title}
-                    </h4>
+                    </h3>
                     <p className="text-zinc-500 dark:text-zinc-400">
                       {job.company}
                     </p>
                   </div>
-                  <p className="text-zinc-600 dark:text-zinc-400">
-                    {job.start} - {job.end}
+                  <p className="shrink-0 text-sm text-zinc-600 dark:text-zinc-400">
+                    {job.start} to {job.end}
                   </p>
                 </div>
+                <p className="relative mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+                  {job.description}
+                </p>
               </div>
-            </a>
+            </article>
           ))}
         </div>
       </motion.section>
@@ -219,45 +280,68 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-3 text-lg font-medium">Blog</h3>
-        <div className="flex flex-col space-y-0">
-          <AnimatedBackground
-            enableHover
-            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
-            transition={{
-              type: 'spring',
-              bounce: 0,
-              duration: 0.2,
-            }}
-          >
-            {BLOG_POSTS.map((post) => (
-              <Link
-                key={post.uid}
-                className="-mx-3 rounded-xl px-3 py-3"
-                href={post.link}
-                data-id={post.uid}
-              >
-                <div className="flex flex-col space-y-1">
-                  <h4 className="font-normal dark:text-zinc-100">
-                    {post.title}
-                  </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    {post.description}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </AnimatedBackground>
-        </div>
+        <h2 className="mb-5 text-lg font-medium">Skills</h2>
+        <dl className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {SKILLS.map((skill) => (
+            <div key={skill.label}>
+              <dt className="mb-1 font-medium">{skill.label}</dt>
+              <dd className="text-zinc-600 dark:text-zinc-400">
+                {skill.description}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </motion.section>
 
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Connect</h3>
+        <h2 className="mb-5 text-lg font-medium">Certifications</h2>
+        <ul className="space-y-5">
+          {CERTIFICATIONS.map((certification) => (
+            <li key={certification.exam}>
+              <a
+                className="underline decoration-zinc-300 underline-offset-4 dark:decoration-zinc-700"
+                href={certification.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {certification.name}
+              </a>
+              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                {certification.exam} · Issued {certification.issued}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h2 className="mb-5 text-lg font-medium">Education</h2>
+        <h3 className="font-medium">Tshwane University of Technology</h3>
+        <p className="text-zinc-600 dark:text-zinc-400">
+          National Diploma in Computer Systems Engineering
+        </p>
+        <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+          Jan 2018 to Dec 2021 · Average 77%
+        </p>
+        <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+          Coursework included database management, computer architecture,
+          algorithms, and computational theory.
+        </p>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h2 className="mb-5 text-lg font-medium">Connect</h2>
         <p className="mb-5 text-zinc-600 dark:text-zinc-400">
-          Feel free to contact me at{' '}
+          Contact me at{' '}
           <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
             {EMAIL}
           </a>
