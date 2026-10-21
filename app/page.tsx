@@ -157,15 +157,15 @@ export default function Personal() {
       >
         <h2 className="mb-5 text-lg font-medium">Selected projects</h2>
         <div
-          className="flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain p-1 pb-5"
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain p-1 pb-5 sm:grid sm:grid-cols-2 sm:overflow-visible sm:p-0"
           role="region"
-          aria-label="Selected projects, scroll horizontally for more"
+          aria-label="Selected projects"
           tabIndex={0}
         >
-          {PROJECTS.map((project) => (
+          {PROJECTS.map((project, index) => (
             <div
               key={project.name}
-              className="w-[85%] shrink-0 snap-start space-y-3 sm:w-[calc(50%_-_0.75rem)]"
+              className="w-[85%] shrink-0 snap-start space-y-3 sm:w-auto"
             >
               {project.image && (
                 <a
@@ -181,6 +181,7 @@ export default function Personal() {
                     width={project.image.width}
                     height={project.image.height}
                     sizes="(max-width: 640px) 85vw, 288px"
+                    priority={index === 0}
                     className="h-auto w-full rounded-xl"
                   />
                 </a>
