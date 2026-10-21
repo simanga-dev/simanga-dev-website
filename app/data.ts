@@ -5,6 +5,7 @@ type Project = {
   repository: string
   technologies: string[]
   status?: string
+  hidden?: boolean
   image?: {
     src: string
     alt: string
@@ -58,12 +59,19 @@ export const PROJECTS: Project[] = [
     description:
       'A carpentry order-tracking application built with Razor Pages and Entity Framework Core. Includes registration, sign-in, and an authenticated admin page for managing orders, with Docker images published through GitHub Actions.',
     link: 'https://carpentry.simanga.dev',
+    image: {
+      src: '/carpentry-homepage.png',
+      alt: 'Carpentry Shop homepage with a wooden box diagram and an order form for box dimensions and customer details.',
+      width: 1920,
+      height: 1080,
+    },
     repository: 'https://github.com/simanga-dev/carpentry-shop',
     technologies: ['ASP.NET Core', 'Razor Pages', 'PostgreSQL', 'Docker'],
     id: 'project4',
   },
   {
     name: 'Angular / .NET API demo',
+    hidden: true,
     description:
       'An Angular client connected to an ASP.NET Core API using HttpClient, with response mapping and error handling. The client and API run in Docker, with Nginx serving the frontend.',
     link: 'https://github.com/simanga-dev/Angular-MS-Auth',

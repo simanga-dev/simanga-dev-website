@@ -157,15 +157,15 @@ export default function Personal() {
       >
         <h2 className="mb-5 text-lg font-medium">Selected projects</h2>
         <div
-          className="flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain p-1 pb-5 sm:grid sm:grid-cols-2 sm:overflow-visible sm:p-0"
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain p-1 pb-5"
           role="region"
           aria-label="Selected projects"
           tabIndex={0}
         >
-          {PROJECTS.map((project, index) => (
+          {PROJECTS.filter((project) => !project.hidden).map((project, index) => (
             <div
               key={project.name}
-              className="w-[85%] shrink-0 snap-start space-y-3 sm:w-auto"
+              className="w-[85%] shrink-0 snap-start space-y-3 sm:w-[288px]"
             >
               {project.image && (
                 <a
@@ -182,7 +182,7 @@ export default function Personal() {
                     height={project.image.height}
                     sizes="(max-width: 640px) 85vw, 288px"
                     priority={index === 0}
-                    className="h-auto w-full rounded-xl"
+                    className="aspect-video w-full rounded-xl object-cover object-top"
                   />
                 </a>
               )}
@@ -251,10 +251,10 @@ export default function Personal() {
               key={job.id}
             >
               <Spotlight
-                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                className="from-teal-400/50 via-teal-300/30 to-transparent blur-2xl dark:from-teal-300/40 dark:via-teal-400/20"
                 size={64}
               />
-              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
+              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-slate-800">
                 <div className="relative flex w-full flex-col justify-between gap-2 sm:flex-row">
                   <div>
                     <h3 className="font-normal dark:text-zinc-100">
